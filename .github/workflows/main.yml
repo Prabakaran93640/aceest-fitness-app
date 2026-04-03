@@ -27,5 +27,4 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t yourname/aceest-app .
-        docker push yourname/aceest-app
+        docker build -t aceest-app .

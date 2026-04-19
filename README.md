@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ACEest Fitness & Gym – CI/CD DevOps Project
 
 ## Project Overview

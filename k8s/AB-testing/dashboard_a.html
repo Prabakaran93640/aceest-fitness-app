@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<title>ACEest Dashboard - Version A</title>
+<style>
+        body { background:#111; color:white; font-family:sans-serif; }
+        .client { border:1px solid #333; padding:10px; margin:10px; }
+        button { background:#444; color:white; padding:5px; }
+</style>
+</head>
+<body>
+ 
+<h2>Dashboard - Version A (Classic)</h2>
+<a href="{{ url_for('logout') }}">Logout</a>
+ 
+<h3>Add Client</h3>
+<form action="{{ url_for('add_client') }}" method="post">
+<input type="text" name="name" placeholder="Client Name">
+<button type="submit">Add</button>
+</form>
+ 
+<h3>Clients</h3>
+ 
+{% for c in clients %}
+<div class="client">
+<b>{{ c[1] }}</b><br>
+    Program: {{ c[3] or "None" }}<br>
+ 
+    <a href="{{ url_for('generate_program', name=c[1]) }}">Generate Program</a>
+</div>
+{% endfor %}
+ 
+</body>
+</html>

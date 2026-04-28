@@ -3,9 +3,10 @@ kind: Service
 metadata:
   name: aceest-service
 spec:
-  type: LoadBalancer
   selector:
-    app: aceest-app
+    app: aceest
+    version: green
   ports:
     - port: 80
       targetPort: 5000
+  type: LoadBalancer

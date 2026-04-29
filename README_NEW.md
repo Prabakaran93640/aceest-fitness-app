@@ -1,42 +1,32 @@
-# ACEest Fitness & Gym – DevOps CI/CD Pipeline Project
+ACEest Fitness & Gym – Advanced DevOps CI/CD Project
+📌 Project Overview
 
-## 📌 Project Overview
+ACEest Fitness & Gym is a Flask-based web application developed to demonstrate a complete DevOps lifecycle. This project showcases modern DevOps practices including version control, automated testing, containerization, CI/CD pipelines, code quality analysis, multiple deployment strategies, and cloud deployment.
 
-ACEest Fitness & Gym is a Flask-based gym management web application developed as part of a DevOps assignment. The project demonstrates end-to-end DevOps practices including source control, automated testing, containerization, CI/CD pipelines, code quality analysis, and Kubernetes deployment.
+🎯 Objectives
+Develop a functional Flask-based gym management system
+Implement version control using Git & GitHub
+Automate testing using Pytest
+Containerize the application using Docker
+Build CI/CD pipelines using GitHub Actions and Jenkins
+Perform static code analysis using SonarQube
+Implement multiple deployment strategies
+Deploy application on Kubernetes
+Deploy application on cloud platform
 
----
+🛠️ Tech Stack
+Category	Tools
+Backend	Python, Flask
+Testing	Pytest
+Version Control	Git, GitHub
+CI/CD	GitHub Actions, Jenkins
+Containerization	Docker
+Code Quality	SonarQube
+Orchestration	Kubernetes
+Cloud Platform	Render
+Registry	Docker Hub
 
-## 🎯 Objectives
-
-- Build and manage a Flask-based gym application
-- Implement version control using Git & GitHub
-- Automate testing using Pytest
-- Containerize the application using Docker
-- Implement CI/CD using GitHub Actions and Jenkins
-- Perform static code analysis using SonarQube
-- Deploy the application using Kubernetes
-- Demonstrate rolling updates with zero downtime
-
----
-
-## 🛠️ Tech Stack
-
-| Category | Tool |
-|---------|------|
-| Backend | Python, Flask |
-| Testing | Pytest |
-| Version Control | Git, GitHub |
-| CI/CD | GitHub Actions, Jenkins |
-| Containerization | Docker |
-| Code Quality | SonarQube |
-| Orchestration | Kubernetes |
-| Registry | Docker Hub |
-
----
-
-## 📁 Project Structure
-
-```text
+📁 Project Structure
 aceest-fitness-app/
 │── app.py
 │── requirements.txt
@@ -44,11 +34,16 @@ aceest-fitness-app/
 │── Jenkinsfile
 │── sonar-project.properties
 │── test_app.py
-│── legacy_versions/
-│── k8s/
-│   ├── deployment.yaml
-│   └── service.yaml
-│── .github/workflows/main.yml
+│
+├── legacy_versions/
+├── k8s/
+│   ├── rolling/
+│   ├── blue-green/
+│   ├── canary/
+│   ├── shadow/
+│   ├── ab-testing/
+│
+└── .github/workflows/main.yml
 
 🚀 Local Setup
 git clone https://github.com/Prabakaran93640/aceest-fitness-app.git
@@ -58,7 +53,7 @@ venv\Scripts\activate
 pip install -r requirements.txt
 python app.py
 
-Open browser:
+Access:
 
 http://127.0.0.1:5000
 
@@ -66,10 +61,8 @@ Default Login:
 
 Username: admin
 Password: admin
-
-🧪 Manual Test Execution
+🧪 Running Tests
 pytest -v test_app.py
-
 🐳 Docker Usage
 
 Build image:
@@ -81,9 +74,6 @@ Run container:
 docker run -p 5000:5000 aceest-app
 
 📦 Docker Hub Images
-
-Published images:
-
 prabakaran2311/aceest-app:v1.0
 prabakaran2311/aceest-app:v2.0
 prabakaran2311/aceest-app:v3.0
@@ -93,9 +83,7 @@ prabakaran2311/aceest-app:latest
 🔁 CI/CD Pipeline
 GitHub Actions
 
-Triggered on every push / pull request.
-
-Stages:
+Triggered on every push:
 
 Checkout Code
 Install Dependencies
@@ -103,27 +91,21 @@ Run Pytest
 Build Docker Image
 Jenkins
 
-Used as secondary build validation pipeline.
-
-Stages:
+Used for build validation:
 
 Source Checkout
 Build Validation
-Test Validation
-SonarQube Integration Stage
-Build Success Confirmation
+Test Stage
+SonarQube Stage
+Build Completion
 
-🔍 SonarQube
-
-Used for static code quality checks:
-
-Bugs
-Code Smells
-Maintainability
-Duplications
+🔍 SonarQube Integration
+Static code analysis performed
+Identifies bugs, vulnerabilities, code smells
+Ensures maintainability
 ☸ Kubernetes Deployment
 
-Deploy:
+Deploy application:
 
 kubectl apply -f k8s/deployment.yaml
 kubectl apply -f k8s/service.yaml
@@ -133,18 +115,66 @@ Check:
 kubectl get pods
 kubectl get svc
 
-🔄 Rolling Update
+🚀 Deployment Strategies Implemented
+1. Rolling Update ✅
 kubectl set image deployment/aceest-app aceest-app=prabakaran2311/aceest-app:latest
-kubectl rollout status deployment/aceest-app
 
-🏁 Learning Outcomes
-CI/CD pipeline implementation
-Docker image versioning
-Jenkins build automation
-SonarQube code quality scanning
-Kubernetes deployments and rolling updates
-Real-world DevOps workflow understanding
+✔ Zero downtime upgrade
 
+2. Blue-Green Deployment ✅
+Two environments: Blue (current), Green (new)
+Traffic switched via service selector
+
+✔ Instant rollback capability
+
+3. Canary Deployment ✅
+Stable + Canary deployments
+Traffic split using replica distribution
+
+✔ Gradual rollout
+
+4. A/B Testing ✅
+Application-Level:
+Flask randomly serves two UI versions
+Kubernetes-Level:
+Separate deployments for Version A & B
+
+✔ User experience comparison
+
+5. Shadow Deployment ✅
+New version deployed but not exposed
+Used for testing without impacting users
+
+✔ Safe validation
+
+☁️ Cloud Deployment
+
+Application deployed using container image on cloud platform:
+
+Platform: Render
+Deployment Method: Docker Image
+Public URL available
+
+👉 The same Docker image can be deployed to:
+
+AWS (EKS / EC2)
+Azure (AKS)
+GCP (GKE)
+
+🧠 Architecture Flow
+Developer → GitHub → GitHub Actions → Docker Hub → Cloud (Render)
+                                     → Kubernetes (Local)
+                                     → Jenkins (Build Validation)
+                                     → SonarQube (Code Quality)
+🏁 Key Learning Outcomes
+End-to-end CI/CD pipeline implementation
+Docker containerization and versioning
+Jenkins pipeline integration
+SonarQube static analysis
+Kubernetes orchestration
+Rolling updates and deployment strategies
+Cloud deployment fundamentals
+Real-world DevOps workflow
 👨‍💻 Author
 
 Prabakaran Dharmaraj
